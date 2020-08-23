@@ -1,0 +1,9 @@
+<?php 
+
+class Config {
+  protected $example = "";
+
+  public function __construct() {
+    
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "enfrte/askalko",
+  "description": "Advanced querying of the Alko database.",
+  "autoload": {
+    "psr-4": {
+      "AskAlko\\": "src/"
+    }
+  },
+  "require": {
+    "shuchkin/simplexlsx": "^0.8.18"
+  }
+}
