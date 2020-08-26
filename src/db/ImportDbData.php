@@ -49,6 +49,7 @@ class ImportDbData {
         $productTableQuery = "INSERT INTO product ($productColumnsImplodedColumns) VALUES ($productColumnsImploded)";
         
         try {
+          // beginTransaction() and commt() are essential for multiple inserts. Inserting 10k rows can takes seconds instead of minutes. 
           $conn->beginTransaction();
           $pdo = $conn->prepare($productTableQuery);
 
