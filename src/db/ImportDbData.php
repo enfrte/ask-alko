@@ -11,7 +11,7 @@ use SimpleXLSX;
 use PDOException;
 use PDO;
 
-class ImportSQL {
+class ImportDbData {
   private $csv_file = 'alko-db.csv';
   private $importDataQuery;
   /*
@@ -48,18 +48,26 @@ class ImportSQL {
         $productColumnsImplodedColumns = str_replace(":", "", $productColumnsImploded);
         $productTableQuery = "INSERT INTO product ($productColumnsImplodedColumns) VALUES ($productColumnsImploded)";
         
-        $pdo = $conn->prepare($productTableQuery);
+        try {
+          $conn->beginTransaction();
+          $pdo = $conn->prepare($productTableQuery);
 
-        foreach ($xlsx->rows() as $key => $row) {
-          // ignore the first 4 rows
-          if ($key > 3) {
-            $exeArray = [];
-            foreach($row as $k => $v) {
-              $k = $productColumns[$k];
-              $exeArray[$k] = $v; // like [':foo' => 'bar',]
+          foreach ($xlsx->rows() as $key => $row) {
+            // ignore the first 4 rows
+            if ($key > 3) {
+              $exeArray = [];
+              foreach($row as $k => $v) {
+                $k = $productColumns[$k];
+                $exeArray[$k] = $v; // like [':foo' => 'bar',]
+              }
+              $pdo->execute($exeArray);
             }
-            $pdo->execute($exeArray);
           }
+          $conn->commit();
+        }
+        catch (Exception $e){
+          $pdo->rollback();
+          throw $e;
         }
         echo 'Data imported. ';
       } 

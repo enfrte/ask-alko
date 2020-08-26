@@ -4,7 +4,7 @@ namespace AskAlko\db;
 use AskAlko\db\DownloadExcelFile;
 use AskAlko\db\CreateTables;
 use AskAlko\db\GenerateCSV;
-use AskAlko\db\ImportSQL;
+use AskAlko\db\ImportDbData;
 
 class CreateDB {
   public function __construct() {
@@ -16,7 +16,7 @@ class CreateDB {
     $createTables = new CreateTables();
 
     // Import CSV to DB
-    $importSQL = new ImportSQL();
+    $importDbData = new ImportDbData();
 
     echo ' - Done';
    }
