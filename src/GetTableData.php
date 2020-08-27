@@ -10,11 +10,6 @@ use AskAlko\db\DbConnect;
 use PDOException;
 use PDO;
 
-/**
- * Get db_info table values and product table column names 
- * 
- * @return array
- */
 class GetTableData 
 {
 	private $pdo;
@@ -24,6 +19,11 @@ class GetTableData
 		$this->pdo = $conn->getConnection();
 	}
 
+	/**
+	 * Get db_info table values 
+	 * 
+	 * @return array
+	 */
 	public function getDbInfo() {
 		$stmt = $this->pdo->prepare('SELECT pricelist_date, db_note FROM db_info');
 		$stmt->execute();
@@ -36,13 +36,32 @@ class GetTableData
 		return $results; 
 	}
 
+	/**
+	 *  
+	 * 
+	 * @return array
+	 */
 	public function getProduct() {
 		$stmt = $this->pdo->prepare('SELECT id FROM product');
 		$stmt->execute();
 		$product = $stmt->fetch();
 
-		$results = [];
 		$results['id'] = $product['id'];
+
+		return $results; 
+	}
+
+	/**
+	 * Get product table column names 
+	 * 
+	 * @return array
+	 */
+	public function getProductColumnNames() {
+		$stmt = $this->pdo->prepare("DESCRIBE product");
+		$stmt->execute();
+		$product_columns = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+		$results['product_columns'] = $product_columns;
 
 		return $results; 
 	}
