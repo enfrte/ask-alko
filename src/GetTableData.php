@@ -41,12 +41,40 @@ class GetTableData
 	 * 
 	 * @return array
 	 */
-	public function getProduct() {
-		$stmt = $this->pdo->prepare('SELECT id FROM product');
+	public function currentValues() {
+		$stmt = $this->pdo->prepare('SELECT DISTINCT manufacturer FROM product');
 		$stmt->execute();
 		$product = $stmt->fetch();
 
-		$results['id'] = $product['id'];
+		/*
+
+bottle_size - min / max
+price - min / max
+cost_per_liter - min / max
+newness
+product_type
+subtype
+special_group
+beer_type
+country_of_origin
+product_region
+vintage - min / max
+product_note
+grapes
+characterization - get unique word list
+packaging_type
+enclosure
+alcohol_percent - min / max
+acid_grams_per_liter - min / max
+sugar_grams_per_liter - min / max
+kantavierrep_percent - min / max
+color_ebc - min / max
+bitter_ebu - min / max
+energy_kcal_per_100ml - min / max
+selection
+		 */
+
+		$results['manufacturer'] = $product;
 
 		return $results; 
 	}
