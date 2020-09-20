@@ -19,3 +19,7 @@ Rough status:
 * Create a frontend to query the database: to do
 
 Demo page: Not available yet. 
+
+### Dev tips
+
+Bypass CORS problems when developing locally by using a browser plugin called [Access-Control-Allow-Origin](https://mybrowseraddon.com/access-control-allow-origin.html)
