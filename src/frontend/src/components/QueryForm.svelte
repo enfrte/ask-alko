@@ -1,11 +1,17 @@
+<script>
+  //const text = document.querySelector("textarea").value;
+  //const lines = text.split(/\r|\r\n|\n/);
+  //const count = lines.length;
+  //console.log(count);
+</script>
+
 <style>
   textarea {
     width: 100%;
-    height: 200px;
   }
 </style>
 
 <form action="">
-  <textarea name="" id="" />
+  <textarea style="height:40px;" name="" id="" />
   <button>Submit</button>
 </form>

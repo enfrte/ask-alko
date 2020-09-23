@@ -1,7 +1,10 @@
 <script>
+  import { writable } from "svelte/store";
+  import { selectColumn } from "./stores.js";
   import ColumnNames from "./components/ColumnNames.svelte";
   import DbInfo from "./components/DbInfo.svelte";
   import QueryForm from "./components/QueryForm.svelte";
+  import QueryResult from "./components/QueryResult.svelte";
 </script>
 
 <style>
@@ -27,10 +30,10 @@
 <main>
   <DbInfo />
   <hr />
-  <p>
-    Hover over the column names with the info icons to see their current values.
-  </p>
-  <p>Results must be ajax for performance reasons.</p>
+  <p>Select a column names with the info icons to see their current values.</p>
   <ColumnNames />
+  <p>Write queries here</p>
   <QueryForm />
+  <p>Query results</p>
+  <QueryResult />
 </main>
