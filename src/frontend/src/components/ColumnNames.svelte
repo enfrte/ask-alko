@@ -2,26 +2,25 @@
   import { onMount } from "svelte";
   import { selectColumn } from "../stores.js";
 
-  const columnNamesLink = "https://localhost/ask-alko/src/api/column-names.php";
   const selectColumnLink =
     "https://localhost/ask-alko/src/api/db-select-column.php";
   let columnNames = {};
 
   // get db table column names
   onMount(async function () {
-    const columnNamesFetch = await fetch(columnNamesLink);
+    const columnNamesFetch = await fetch(
+      "https://localhost/ask-alko/src/api/column-names.php"
+    );
     columnNames = await columnNamesFetch.json();
-    //console.log(columnNames);
   });
 
-  // fatch column data from db
+  // fetch column data from db
   async function productColumnClickHandler() {
     const selectColumnFetch = await fetch(
       selectColumnLink + "?column=" + this.dataset.productColumn
     );
     const selectColumnJson = await selectColumnFetch.json();
     selectColumn.set(selectColumnJson);
-    console.log("CN", selectColumnJson);
   }
 </script>
 

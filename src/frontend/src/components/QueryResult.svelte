@@ -4,13 +4,13 @@
   let columnData = {};
 
   selectColumn.subscribe((value) => {
-    columnData = value;
+    return (columnData = value);
   });
 </script>
 
 <style>
   .result-container {
-    background-color: darkslategrey;
+    background-color: #222;
     color: whitesmoke;
     padding: 20px;
   }
@@ -19,7 +19,9 @@
 <div class="result-container">
   {#if columnData}
     {#each columnData.columnData as column}
-      <div>{column}</div>
+      <p>{column}</p>
     {/each}
-  {:else}Waiting...{/if}
+  {:else}
+    <h4>First select a column or make a query</h4>
+  {/if}
 </div>
