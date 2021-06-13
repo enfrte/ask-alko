@@ -1,15 +1,15 @@
 <script>
   import { onMount } from "svelte";
-  import { selectColumn } from "../stores.js";
+  import { selectColumn, columnQuery } from "../stores.js";
 
   const selectColumnLink =
-    "https://localhost/ask-alko/src/api/db-select-column.php";
+    "http://localhost/ask-alko/src/api/db-select-column.php";
   let columnNames = {};
 
   // get db table column names
   onMount(async function () {
     const columnNamesFetch = await fetch(
-      "https://localhost/ask-alko/src/api/column-names.php"
+      "http://localhost/ask-alko/src/api/column-names.php"
     );
     columnNames = await columnNamesFetch.json();
   });
@@ -21,6 +21,12 @@
     );
     const selectColumnJson = await selectColumnFetch.json();
     selectColumn.set(selectColumnJson);
+    setColumnQuery(this.dataset.productColumn);
+  }
+
+  function setColumnQuery(productColumn) {
+    const query = `SELECT ${productColumn} FROM product LIMIT 10`;
+    columnQuery.set(query);
   }
 </script>
 

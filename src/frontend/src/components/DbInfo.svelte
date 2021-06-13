@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
 
-  const dbInfoLink = "https://localhost/ask-alko/src/api/db-info.php";
+  const dbInfoLink = "http://localhost/ask-alko/src/api/db-info.php";
   let dbInfo = {};
 
   onMount(async function () {

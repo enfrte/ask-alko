@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "shuchkin/simplexlsx",
-            "version": "0.8.18",
+            "version": "0.8.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/shuchkin/simplexlsx.git",
-                "reference": "9325345853e453affdc8591cb7216538b856ce05"
+                "reference": "1581dbed25a846f8fee4303849ab58a14f528518"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shuchkin/simplexlsx/zipball/9325345853e453affdc8591cb7216538b856ce05",
-                "reference": "9325345853e453affdc8591cb7216538b856ce05",
+                "url": "https://api.github.com/repos/shuchkin/simplexlsx/zipball/1581dbed25a846f8fee4303849ab58a14f528518",
+                "reference": "1581dbed25a846f8fee4303849ab58a14f528518",
                 "shasum": ""
             },
             "require": {
@@ -51,7 +51,11 @@
                 "php",
                 "xlsx"
             ],
-            "time": "2020-07-21T16:47:24+00:00"
+            "support": {
+                "issues": "https://github.com/shuchkin/simplexlsx/issues",
+                "source": "https://github.com/shuchkin/simplexlsx/tree/0.8.24"
+            },
+            "time": "2021-05-18T11:49:49+00:00"
         }
     ],
     "packages-dev": [],
@@ -62,5 +66,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }

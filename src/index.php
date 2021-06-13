@@ -26,4 +26,5 @@ echo '</pre>';
 
 
 echo $db_info['pricelist_date'];
+echo '<br>';
 echo $db_info['db_note'];

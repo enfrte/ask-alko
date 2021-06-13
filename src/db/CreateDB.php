@@ -6,11 +6,14 @@ use AskAlko\db\CreateTables;
 use AskAlko\db\GenerateCSV;
 use AskAlko\db\ImportDbData;
 
+/**
+ * Generates the database 
+ */
 class CreateDB {
   public function __construct() {
     // Try/Catch?
     // Download file
-    //$downloadExcelFile = new DownloadExcelFile();
+    //$downloadExcelFile = new DownloadExcelFile(); // comment out when debugging to stop downloading from the alko server every time
 
     // Drop the old tables and create them again
     $createTables = new CreateTables();
@@ -21,4 +24,4 @@ class CreateDB {
     echo ' - Done';
    }
 }
-$init = new CreateDB();
+$init = new CreateDB(); // Execute 

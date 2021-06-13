@@ -1,5 +1,7 @@
 <?php 
-
+/**
+ * Gets the general info and column names of the database
+ */
 namespace AskAlko;
 
 ini_set('display_errors', 1);
