@@ -12,6 +12,7 @@ use PDOException;
 // Create the app tables
 class CreateTables {
   private $scheemaDbInfo = <<<eof
+  USE ask_alko;
   DROP TABLE IF EXISTS db_info;
   CREATE TABLE db_info (
     pricelist_date VARCHAR(65000) NOT NULL,
@@ -20,6 +21,7 @@ class CreateTables {
   eof;
   
   private $scheemaProduct = <<<eof
+  USE ask_alko;
   DROP TABLE IF EXISTS product;
   CREATE TABLE product (
     id INT NOT NULL AUTO_INCREMENT,

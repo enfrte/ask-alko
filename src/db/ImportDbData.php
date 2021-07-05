@@ -28,7 +28,7 @@ class ImportDbData {
 
     try {
       //$conn->query($this->importDataQuery);
-      $excel_file = __DIR__."\alkon-hinnasto-tekstitiedostona.xlsx";
+      $excel_file = __DIR__.DIRECTORY_SEPARATOR.'alkon-hinnasto-tekstitiedostona.xlsx';
 
       if ( $xlsx = SimpleXLSX::parse($excel_file) ) {
         //print_r( $xlsx->rows() ); // example data
