@@ -6,16 +6,12 @@ use PDO;
 use PDOException;
 
 /*
-* Mysql database class - only one connection alowed
+* SQLite database class - only one connection alowed
 */
 class DbConnect {
   private $connection;
   private static $_instance;
-
-  private $dbhost = "localhost"; // Ip Address of database if external connection.
-  private $dbuser = "root"; // Username for DB
-  private $dbpass = ""; // Password for DB
-  private $dbname = "ask_alko"; // DB Name
+  private $dbfile = __DIR__.'/ask_alko.db'; // SQLite file path
 
   /*
   Get an instance of the Database
@@ -31,7 +27,7 @@ class DbConnect {
   // Constructor
   private function __construct() {
     try {
-      $this->connection = new PDO('mysql:host='.$this->dbhost.';dbname='.$this->dbname, $this->dbuser, $this->dbpass);
+      $this->connection = new PDO('sqlite:'.$this->dbfile);
       $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch(PDOException $e){
@@ -49,3 +45,4 @@ class DbConnect {
 }
 
 ?>
+

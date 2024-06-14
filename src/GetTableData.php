@@ -50,31 +50,30 @@ class GetTableData
 		$product = $stmt->fetch();
 
 		/*
-
-bottle_size - min / max
-price - min / max
-cost_per_liter - min / max
-newness
-product_type
-subtype
-special_group
-beer_type
-country_of_origin
-product_region
-vintage - min / max
-product_note
-grapes
-characterization - get unique word list
-packaging_type
-enclosure
-alcohol_percent - min / max
-acid_grams_per_liter - min / max
-sugar_grams_per_liter - min / max
-kantavierrep_percent - min / max
-color_ebc - min / max
-bitter_ebu - min / max
-energy_kcal_per_100ml - min / max
-selection
+		bottle_size - min / max
+		price - min / max
+		cost_per_liter - min / max
+		newness
+		product_type
+		subtype
+		special_group
+		beer_type
+		country_of_origin
+		product_region
+		vintage - min / max
+		product_note
+		grapes
+		characterization - get unique word list
+		packaging_type
+		enclosure
+		alcohol_percent - min / max
+		acid_grams_per_liter - min / max
+		sugar_grams_per_liter - min / max
+		kantavierrep_percent - min / max
+		color_ebc - min / max
+		bitter_ebu - min / max
+		energy_kcal_per_100ml - min / max
+		selection
 		 */
 
 		$results['manufacturer'] = $product;
@@ -88,9 +87,9 @@ selection
 	 * @return array
 	 */
 	public function getProductColumnNames() {
-		$stmt = $this->pdo->prepare("DESCRIBE product");
+		$stmt = $this->pdo->prepare('PRAGMA table_info(product)');
 		$stmt->execute();
-		$product_columns = $stmt->fetchAll(PDO::FETCH_COLUMN);
+		$product_columns = $stmt->fetchAll(PDO::FETCH_COLUMN, 1);
 
 		$results['product_columns'] = $product_columns;
 
@@ -113,8 +112,8 @@ selection
 				$results['columnData'][] = $row[$column];
 			}
 			return $results; 
-		} catch (PDOException $Exception) {
-			throw new MyDatabaseException( $Exception->getMessage(), (int)$Exception->getCode() );
+		} catch (PDOException $e) {
+			throw new PDOException( $e->getMessage(), (int)$e->getCode() );
 		}
 
 	}

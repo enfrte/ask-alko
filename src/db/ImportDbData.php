@@ -66,7 +66,7 @@ class ImportDbData {
           }
           $conn->commit();
         }
-        catch (Exception $e){
+        catch (\Exception $e){
           $pdo->rollback();
           throw $e;
         }
@@ -79,4 +79,3 @@ class ImportDbData {
     $conn = null;
   }
 }
-

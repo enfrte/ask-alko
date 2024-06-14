@@ -1,5 +1,7 @@
 A queryable MySQL database ceated from Alko's Excel file database.
 
+First run `composer install`
+
 Fetch a new database: `cronJob.php` - Note check `CreateDB.php` for `$downloadExcelFile` being commented out. 
 
 Still to do - ~~Entry point: `ask-alko/src/frontend/public/index.html` but you will have to run svelte to serve the files correctly.~~

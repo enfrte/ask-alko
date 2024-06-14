@@ -11,51 +11,48 @@ use PDOException;
 
 // Create the app tables
 class CreateTables {
+  private $tables = ['db_info', 'product'];
+
   private $scheemaDbInfo = <<<eof
-  USE ask_alko;
-  DROP TABLE IF EXISTS db_info;
   CREATE TABLE db_info (
-    pricelist_date VARCHAR(65000) NOT NULL,
-    db_note VARCHAR(65000)
+    pricelist_date TEXT NOT NULL,
+    db_note TEXT
   );
   eof;
   
   private $scheemaProduct = <<<eof
-  USE ask_alko;
-  DROP TABLE IF EXISTS product;
   CREATE TABLE product (
-    id INT NOT NULL AUTO_INCREMENT,
-    product_number INT NOT NULL,
-    product_name VARCHAR(65000),
-    manufacturer VARCHAR(65000),
-    bottle_size VARCHAR(65000),
-    price DECIMAL(10, 2),
-    cost_per_liter DECIMAL(10, 2),
-    newness VARCHAR(65000),
-    price_list_order_code VARCHAR(65000),
-    product_type VARCHAR(65000),
-    subtype VARCHAR(65000),
-    special_group VARCHAR(65000),
-    beer_type VARCHAR(65000),
-    country_of_origin VARCHAR(65000),
-    product_region VARCHAR(65000),
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_number INTEGER NOT NULL,
+    product_name TEXT,
+    manufacturer TEXT,
+    bottle_size TEXT,
+    price REAL,
+    cost_per_liter REAL,
+    newness TEXT,
+    price_list_order_code TEXT,
+    product_type TEXT,
+    subtype TEXT,
+    special_group TEXT,
+    beer_type TEXT,
+    country_of_origin TEXT,
+    product_region TEXT,
     vintage SMALLINT UNSIGNED,
-    etiquette_entries VARCHAR(65000),
-    product_note VARCHAR(65000),
-    grapes VARCHAR(65000),
-    characterization VARCHAR(65000),
-    packaging_type VARCHAR(65000),
-    enclosure VARCHAR(65000),
-    alcohol_percent DECIMAL(3, 1),
-    acid_grams_per_liter DECIMAL(10, 1),
-    sugar_grams_per_liter DECIMAL(10, 0),
-    kantavierrep_percent DECIMAL(10, 1),
-    color_ebc DECIMAL(10, 1),
-    bitter_ebu DECIMAL(10, 1),
-    energy_kcal_per_100ml DECIMAL(10, 1),
-    selection VARCHAR(65000),
-    european_article_umber VARCHAR(65000) NOT NULL,
-    PRIMARY KEY (id)
+    etiquette_entries TEXT,
+    product_note TEXT,
+    grapes TEXT,
+    characterization TEXT,
+    packaging_type TEXT,
+    enclosure TEXT,
+    alcohol_percent REAL,
+    acid_grams_per_liter REAL,
+    sugar_grams_per_liter INTEGER,
+    kantavierrep_percent REAL,
+    color_ebc REAL,
+    bitter_ebu REAL,
+    energy_kcal_per_100ml REAL,
+    selection TEXT,
+    european_article_umber TEXT NOT NULL
   );
   eof;
 
@@ -64,8 +61,14 @@ class CreateTables {
     $conn = $db->getConnection();
 
     try {
+      // $conn->query("PRAGMA journal_mode = OFF;"); // Disable the write-ahead log
+      foreach ($this->tables as $table) {
+        $conn->query('DROP TABLE IF EXISTS '.$table.';');
+      }
+
       $conn->query($this->scheemaDbInfo);
       $conn->query($this->scheemaProduct);
+      // $conn->query("PRAGMA query_only = 1;"); // Make the database read-only
       echo 'Tables created. ';
       $conn = null;
     } 
