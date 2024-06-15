@@ -44,15 +44,12 @@
 			</div>
 			<div class="col-md-9">
 				<h4>Column sample data</h4>
+				
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">Result limit</span>
 					<input type="number" value="25" class="form-control" id="resultLimit" name="resultLimit" aria-label="Username" aria-describedby="basic-addon1">
 				</div>
-				<div id="selected-column">
-					<div class="alert alert-info" role="alert">
-						Select a table column or write an SQL query
-					</div>
-				</div>
+				
 				<div class="mb-3">
 					<label for="sqlQuery" class="form-label">SQL Query</label>
 					<textarea class="form-control" id="sqlQuery" name="sqlQuery" rows="3">SELECT * FROM product</textarea>
@@ -63,6 +60,12 @@
 					hx-include="#resultLimit, #sqlQuery">
 					Submit Query
 				</button>
+
+				<div id="selected-column">
+					<div class="alert alert-info" role="alert">
+						Select a table column or write an SQL query
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -176,14 +176,10 @@ class GetTableData
 		$limit = (int) $requestData['resultLimit'];
 		$results['queryResults'] = [];
 
-		if (empty($limit)) {
-			$limit = 0;
-		}
-
 		$stmt = $this->pdo->prepare($sqlQuery);
 		$stmt->execute();
 		$db_info = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		$db_info = !empty($db_info) ? array_slice($db_info, 0, $limit) : [];
+		$db_info = !empty($db_info) && !empty($limit) ? array_slice($db_info, 0, $limit) : $db_info;
 
 		foreach ($db_info as $row) {
 			$results['queryResults'][] = $row;
