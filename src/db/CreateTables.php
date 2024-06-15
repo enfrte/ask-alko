@@ -57,7 +57,7 @@ class CreateTables {
   eof;
 
   public function __construct() {
-    $db = DbConnect::getInstance();
+    $db = DbConnect::getInstance(DbConnect::MODE_READ_WRITE);
     $conn = $db->getConnection();
 
     try {
