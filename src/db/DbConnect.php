@@ -16,15 +16,15 @@ class DbConnect {
   const MODE_READ_WRITE = 'rw';
   const MODE_READ_ONLY = 'ro';
   
-  public function __construct($mode = self::MODE_READ_ONLY) {
+  public function __construct($mode) {
     try {
       $dsn = "sqlite:{$this->dbfile}";
-      $options = [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-      ];
+      $options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
+
       if ($mode === self::MODE_READ_ONLY) {
-        $options[PDO::SQLITE_ATTR_READONLY] = true;
+        $options[PDO::SQLITE_ATTR_OPEN_FLAGS] = PDO::SQLITE_OPEN_READONLY;
       }
+
       $this->connection = new PDO($dsn, null, null, $options);
     }
     catch(PDOException $e){
@@ -36,7 +36,7 @@ class DbConnect {
   Get an instance of the Database
   @return Instance
   */	
-  public static function getInstance($mode = 'rw') {
+  public static function getInstance($mode = self::MODE_READ_ONLY) {
     if(!self::$_instance) {
           self::$_instance = new self($mode);
         }
