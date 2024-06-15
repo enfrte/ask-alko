@@ -61,14 +61,12 @@ class CreateTables {
     $conn = $db->getConnection();
 
     try {
-      // $conn->query("PRAGMA journal_mode = OFF;"); // Disable the write-ahead log
       foreach ($this->tables as $table) {
         $conn->query('DROP TABLE IF EXISTS '.$table.';');
       }
 
       $conn->query($this->scheemaDbInfo);
       $conn->query($this->scheemaProduct);
-      // $conn->query("PRAGMA query_only = 1;"); // Make the database read-only
       echo 'Tables created. ';
       $conn = null;
     } 

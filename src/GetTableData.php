@@ -45,38 +45,43 @@ class GetTableData
 	 * @return array
 	 */
 	public function currentValues() {
-		$stmt = $this->pdo->prepare('SELECT DISTINCT manufacturer FROM product');
-		$stmt->execute();
-		$product = $stmt->fetch();
+		$column_names = [
+			'product_name',
+			'manufacturer',
+			'bottle_size',
+			'price',
+			'cost_per_liter',
+			'newness',
+			'product_type',
+			'subtype',
+			'special_group',
+			'beer_type',
+			'country_of_origin',
+			'product_region',
+			'vintage',
+			'product_note',
+			'grapes',
+			'characterization',
+			'packaging_type',
+			'enclosure',
+			'alcohol_percent',
+			'acid_grams_per_liter',
+			'sugar_grams_per_liter',
+			'kantavierrep_percent',
+			'color_ebc',
+			'bitter_ebu',
+			'energy_kcal_per_100ml',
+			'selection'
+		];
 
-		/*
-		bottle_size - min / max
-		price - min / max
-		cost_per_liter - min / max
-		newness
-		product_type
-		subtype
-		special_group
-		beer_type
-		country_of_origin
-		product_region
-		vintage - min / max
-		product_note
-		grapes
-		characterization - get unique word list
-		packaging_type
-		enclosure
-		alcohol_percent - min / max
-		acid_grams_per_liter - min / max
-		sugar_grams_per_liter - min / max
-		kantavierrep_percent - min / max
-		color_ebc - min / max
-		bitter_ebu - min / max
-		energy_kcal_per_100ml - min / max
-		selection
-		 */
+		$results = [];
 
-		$results['manufacturer'] = $product;
+		foreach ($column_names as $column) {
+			$stmt = $this->pdo->prepare("SELECT DISTINCT {$column} FROM product;");
+			$stmt->execute();
+			$product = $stmt->fetch();
+			$results[$column] = $product;
+		}
 
 		return $results; 
 	}
