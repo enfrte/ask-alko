@@ -59,7 +59,9 @@
 				<div class="mb-3">
 					<h5>SQL Query</h5>
 					<p>Query Alko's product table. Select a column name above to get sample data to work with.</p>
-					<textarea class="form-control" id="sqlQuery" name="sqlQuery" rows="3">SELECT * FROM product</textarea>
+					<textarea class="form-control" id="sqlQuery" name="sqlQuery" rows="3">SELECT product_name, cost_per_liter, alcohol_percent FROM product
+WHERE alcohol_percent > 1
+ORDER BY cost_per_liter</textarea>
 				</div>
 				<button type="button" class="btn btn-primary mb-3"
 					hx-post="api/db-query.php"

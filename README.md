@@ -1,10 +1,10 @@
+Demo: [https://codinginthecold.alwaysdata.net/ask-alko/src/](https://codinginthecold.alwaysdata.net/ask-alko/src/)
+
 A queryable MySQL database ceated from Alko's Excel file database.
 
 First run `composer install`
 
 Fetch a new database: `cronJob.php` - Note check `CreateDB.php` for `$downloadExcelFile` being commented out. 
-
-Still to do - ~~Entry point: `ask-alko/src/frontend/public/index.html` but you will have to run svelte to serve the files correctly.~~
 
 ### What is Alko?
 
@@ -16,16 +16,15 @@ Alko's site has a pretty standard search feature where you can search by product
 
 ### Current status
 
-Rough status: 
 * Download the excel database: done
 * Rebuild the sql database tables: done
 * Import data to the sql database: done
-* Create a frontend to query the database: doing
-
-Demo page: Not available yet. 
+* Create a frontend to query the database: done
 
 ### Dev tips
 
-Bypass CORS problems when developing locally by using a browser plugin called [Access-Control-Allow-Origin](https://mybrowseraddon.com/access-control-allow-origin.html)
+There is a `cronJob.php` you can call to automate the fetching of new data.
 
-There is a `cronJob.php` you can call to automate the fetching of new data. 
+### Made with 
+
+PHP, HTMX, SQLite, Bootstrap 5, Twig, simplexlsx.
