@@ -11,9 +11,8 @@ use AskAlko\db\ImportDbData;
  */
 class CreateDB {
   public function __construct() {
-    // Try/Catch?
     // Download file
-    //$downloadExcelFile = new DownloadExcelFile(); // comment out when debugging to stop downloading from the alko server every time
+    $downloadExcelFile = new DownloadExcelFile(); // comment out when debugging to stop downloading from the alko server every time
 
     // Drop the old tables and create them again
     $createTables = new CreateTables();
