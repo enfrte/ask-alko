@@ -14,8 +14,12 @@
 	<tbody>
 	{% for row in sqlQuery %}
 		<tr>
-		{% for value in row %}
+		{% for column, value in row %}
+			{% if column == 'product_number' %}
+			<td><a href="https://www.alko.fi/tuotteet/{{ value }}" target="_blank">{{ value }}</a></td>
+			{% else %}
 			<td>{{ value }}</td>
+			{% endif %}
 		{% endfor %}
 		</tr>
 	{% endfor %}
